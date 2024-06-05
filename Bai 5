@@ -24,7 +24,7 @@ namespace ArrayOperations
                     max = numbers[i];
                 if (numbers[i] < min)
                     min = numbers[i];
-                sum += numbers[i];
+                sum += numbers[i]; // Tính tổng
             }
 
             Console.WriteLine($"Gia tri lon nhat trong mang: {max}");
