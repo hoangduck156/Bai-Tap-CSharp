@@ -1,0 +1,69 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // a. Tìm số lớn nhất và nhỏ nhất trong dãy số
+        Console.Write("Nhap so luong phan tu trong day so: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        sbyte[] numbers = new sbyte[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"Nhap phan tu thu {i + 1}: ");
+            numbers[i] = Convert.ToSByte(Console.ReadLine());
+        }
+
+        sbyte min = numbers[0];
+        sbyte max = numbers[0];
+
+        for (int i = 1; i < n; i++)
+        {
+            if (numbers[i] < min)
+                min = numbers[i];
+            if (numbers[i] > max)
+                max = numbers[i];
+        }
+
+        Console.WriteLine($"So nho nhat: {min}");
+        Console.WriteLine($"Số lon nhat: {max}");
+
+        // b. Tính tổng các số chẵn trong dãy số
+        int sumEven = 0;
+
+        foreach (sbyte num in numbers)
+        {
+            if (num % 2 == 0)
+                sumEven += num;
+        }
+
+        Console.WriteLine($"Tong cac so chan: {sumEven}");
+
+        // c. Tính tổng các số từ 1 đến n
+        Console.Write("Nhap mot so nguyen khong dau n: ");
+        byte nUnsigned = Convert.ToByte(Console.ReadLine());
+
+        int sumUnsigned = 0;
+        for (byte i = 1; i <= nUnsigned; i++)
+        {
+            sumUnsigned += i;
+        }
+
+        Console.WriteLine($"Tong cac so tu 1 den {nUnsigned}: {sumUnsigned}");
+
+        // d. Tính tổng các chữ số trong số nguyên không dấu
+        Console.Write("Nhap mot so nguyen khong dau: ");
+        byte numberUnsigned = Convert.ToByte(Console.ReadLine());
+
+        int sumDigits = 0;
+        while (numberUnsigned > 0)
+        {
+            sumDigits += numberUnsigned % 10;
+            numberUnsigned /= 10;
+        }
+
+        Console.WriteLine($"Tong cac chu so: {sumDigits}");
+    }
+}
