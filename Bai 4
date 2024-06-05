@@ -1,0 +1,54 @@
+using System;
+
+
+    class Program
+    {
+   
+        static bool IsPalindrome(long number)
+        {
+            string numberString = number.ToString();
+            int left = 0;
+            int right = numberString.Length - 1;
+
+            while (left < right)
+            {
+                if (numberString[left] != numberString[right])
+                    return false;
+
+                left++;
+                right--;
+            }
+
+            return true;
+        }
+
+        static void Main(string[] args)
+        {
+//a. Kiểm tra số Palindrome
+            Console.Write("Nhap so nguyen khong dau (8 byte): ");
+            long inputNumber = Convert.ToInt64(Console.ReadLine());
+
+            if (IsPalindrome(inputNumber))
+                Console.WriteLine("So {0} la so Palindrome.", inputNumber);
+            else
+                Console.WriteLine("So {0} khong la so Palindrome.", inputNumber);
+
+            Console.WriteLine();
+// b.Nhập vào số nguyên không dấu và tính tổng của các số trong mảng
+            Console.Write("Nhap so luong phan tu trong mang: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            long[] arr = new long[n];
+            long sum = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write("Nhap phan tu thu {0}: ", i + 1);
+                arr[i] = Convert.ToInt64(Console.ReadLine());
+                sum += arr[i];
+            }
+
+            Console.WriteLine("Tong cac so trong mang la: {0}", sum);
+        
+    }
+}
