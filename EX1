@@ -1,0 +1,17 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Nhap so: ");
+        double number = Convert.ToDouble(Console.ReadLine());
+
+        if (number > 0)
+            Console.WriteLine("So duong.");
+        else if (number < 0)
+            Console.WriteLine("So am.");
+        else
+            Console.WriteLine("So khong.");
+    }
+}
