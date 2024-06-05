@@ -1,0 +1,44 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // a. Tính tổng các số nguyên không dấu trong mảng
+        Console.Write("Nhap so luong phan tu trong mang: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        ushort[] unsignedNumbers = new ushort[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"Nhap phan tu thu{i + 1}: ");
+            unsignedNumbers[i] = Convert.ToUInt16(Console.ReadLine());
+        }
+
+        uint sumUnsigned = 0;
+        foreach (ushort num in unsignedNumbers)
+        {
+            sumUnsigned += num;
+        }
+
+        Console.WriteLine($"Tong cac so nguyen khong dau: {sumUnsigned}");
+
+        // b. Tính tổng các số nguyên có dấu trong mảng
+        short[] signedNumbers = new short[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"Nhap phan tu thu {i + 1}: ");
+            signedNumbers[i] = Convert.ToInt16(Console.ReadLine());
+        }
+
+        int sumSigned = 0;
+        foreach (short num in signedNumbers)
+        {
+            sumSigned += num;
+        }
+
+        Console.WriteLine($"Tong cac so nguyen co dau: {sumSigned}");
+    }
+}
