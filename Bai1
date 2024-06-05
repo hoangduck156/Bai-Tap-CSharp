@@ -1,0 +1,65 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // a. Nhập và tính toán số nguyên kiểu 4 byte
+        try
+        {
+            Console.Write("Nhap so nguyen a: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Nhap so nguyen b: ");
+            int b = Convert.ToInt32(Console.ReadLine());
+
+            int sum = a + b;
+            int difference = a - b;
+            int product = a * b;
+            int quotient = a / b;
+
+            Console.WriteLine($"Tong: {sum}");
+            Console.WriteLine($"Hieu: {difference}");
+            Console.WriteLine($"Tich: {product}");
+            Console.WriteLine($"Thuong (so nguyen): {quotient}");
+            Console.WriteLine($"Thuong (so thuc): {(double)a / b}");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Loi: Vui long nhap so nguyen hop le.");
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("Khong the chia cho 0.");
+        }
+
+        // b. Tính tổng các số trong mảng
+        Console.Write("Nhap so luong phan tu trong mang: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        int[] arr = new int[n];
+        int sumArray = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"Nhap phan tu thu: {i + 1}: ");
+            arr[i] = Convert.ToInt32(Console.ReadLine());
+            sumArray += arr[i];
+        }
+
+        Console.WriteLine($"Tong cac so trong mang: {sumArray}");
+
+        // c. Đảo ngược các chữ số của số nguyên không dấu
+        Console.Write("Nhap so nguyen khong dau: ");
+        uint number = Convert.ToUInt32(Console.ReadLine());
+
+        uint reversedNumber = 0;
+        while (number > 0)
+        {
+            reversedNumber = reversedNumber * 10 + number % 10;
+            number /= 10;
+        }
+
+        Console.WriteLine($"So sau khi dao nguoc: {reversedNumber}");
+    }
+}
