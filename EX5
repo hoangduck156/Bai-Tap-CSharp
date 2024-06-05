@@ -1,0 +1,27 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+        int secretNumber = random.Next(1, 101);
+        int guess;
+
+        while (true)
+        {
+            Console.Write("Hay doan mot so bi mat (1-100): ");
+            guess = Convert.ToInt32(Console.ReadLine());
+
+            if (guess < secretNumber)
+                Console.WriteLine("Thu lai mot so lon hon.");
+            else if (guess > secretNumber)
+                Console.WriteLine("Thu lai mot so nho hon.");
+            else
+            {
+                Console.WriteLine("Chuc mung! Ban da doan trung so bi mat.");
+                break;
+            }
+        }
+    }
+}
