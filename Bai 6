@@ -1,0 +1,43 @@
+using System;
+
+namespace ArrayOperations
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double[] numbers = new double[8];
+            for (int i = 0; i < 8; i++)
+            {
+                Console.Write($"Nhap so thu {i + 1}: ");
+                numbers[i] = Convert.ToDouble(Console.ReadLine());
+            }
+
+            // Tính trung bình cộng của các số trong mảng
+            double sum = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                sum += numbers[i];
+            }
+            double average = sum / 8;
+
+            // Tìm giá trị lớn nhất và nhỏ nhất trong mảng
+            double max = numbers[0];
+            double min = numbers[0];
+
+            for (int i = 0; i < 8; i++)
+            {
+                if (numbers[i] > max)
+                    max = numbers[i];
+                if (numbers[i] < min)
+                    min = numbers[i];
+            }
+
+            Console.WriteLine($"Trung binh cong cac so trong mang: {average}");
+            Console.WriteLine($"Gia tri lon nhat trong mang: {max}");
+            Console.WriteLine($"Gia tri nho nhat trong mang: {min}");
+
+            Console.ReadLine();
+        }
+    }
+}
