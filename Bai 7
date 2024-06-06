@@ -1,0 +1,120 @@
+using System;
+
+namespace NumberOperations
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                // a. Tính tổng hai số nguyên không dấu
+                Console.Write("Nhap so nguyen khong dau thu nhat: ");
+                uint number1 = Convert.ToUInt32(Console.ReadLine());
+
+                Console.Write("Nhap so nguyen khong dau thu hai: ");
+                uint number2 = Convert.ToUInt32(Console.ReadLine());
+
+                uint sumUnsigned = number1 + number2;
+                Console.WriteLine($"Tong hai so nguyen khong dau la: {sumUnsigned}");
+
+                // b. Tính diện tích và chu vi hình chữ nhật
+                Console.Write("Nhap chieu dai hinh chu nhat: ");
+                ushort chieuDai = Convert.ToUInt16(Console.ReadLine());
+
+                Console.Write("Nhap chieu rong hinh chu nhat: ");
+                ushort chieuRong = Convert.ToUInt16(Console.ReadLine());
+
+                uint dienTich = (uint)chieuDai * chieuRong;
+                uint chuVi = 2 * ((uint)chieuDai + chieuRong);
+                Console.WriteLine($"Dien tich hinh chu nhat: {dienTich}");
+                Console.WriteLine($"Chu vi hinh chu nhat: {chuVi}");
+
+                // c. Kiểm tra số nguyên không dấu có phải là số chẵn hay lẻ
+                Console.Write("Nhap so nguyen khong dau:");
+                uint number = Convert.ToUInt32(Console.ReadLine());
+                if (number1 % 2 == 0)
+                    Console.WriteLine("So chan.");
+                else
+                    Console.WriteLine("So le.");
+
+                // d. Tính tổng hai số nguyên có dấu
+                Console.Write("Nhap so nguyen thu nhat: ");
+                sbyte signedNumber1 = Convert.ToSByte(Console.ReadLine());
+
+                Console.Write("Nhap so nguyen thu hai: ");
+                sbyte signedNumber2 = Convert.ToSByte(Console.ReadLine());
+
+                sbyte sumSigned = (sbyte)(signedNumber1 + signedNumber2);
+                Console.WriteLine($"Tong hai so nguyen co dau: {sumSigned}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Loi! Vui long nhap so hop le.");
+            }
+
+            // e. Tính tổng các số từ 1 đến n
+                Console.Write("Nhap so nguyen khong dau n: ");
+                uint n = Convert.ToUInt32(Console.ReadLine());
+                uint sumN = n * (n + 1) / 2;
+                Console.WriteLine($"Tong cac so tu 1 den {n}: {sumN}");
+            // h. Tìm số lớn nhất trong ba số nguyên
+                Console.Write("Nhap so nguyen thu nhat: ");
+                int int1 = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Nhap so nguyen thu hai: ");
+                int int2 = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Nhap so nguyen thu ba: ");
+                int int3 = Convert.ToInt32(Console.ReadLine());
+
+                int maxInt = Math.Max(int1, Math.Max(int2, int3));
+                Console.WriteLine($"So lon nhat trong ba so la: {maxInt}");
+
+                // k. Tính giai thừa của số nguyên không âm n
+                Console.Write("Nhap so nguyen khong am n: ");
+                int nonNegativeInt = Convert.ToInt32(Console.ReadLine());
+
+                long factorial = 1;
+                for (int i = 1; i <= nonNegativeInt; i++)
+                {
+                    factorial *= i;
+                }
+                Console.WriteLine($"Giai thua cua {nonNegativeInt} la: {factorial}");
+
+                // l. Kiểm tra số nguyên không âm có phải là số nguyên tố hay không
+                bool isPrime = true;
+                if (nonNegativeInt < 2)
+                    isPrime = false;
+                else
+                {
+                    for (int i = 2; i <= Math.Sqrt(nonNegativeInt); i++)
+                    {
+                        if (nonNegativeInt % i == 0)
+                        {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+                }
+                Console.WriteLine($"So {nonNegativeInt} {(isPrime ? "la so nguyen to" : "khong la so nguyen to")}");
+
+                // m. Kiểm tra số hoàn hảo
+                long sumDivisors = 0;
+                for (int i = 1; i < nonNegativeInt; i++)
+                {
+                    if (nonNegativeInt % i == 0)
+                        sumDivisors += i;
+                }
+                bool isPerfectNumber = sumDivisors == nonNegativeInt;
+                Console.WriteLine($"So {nonNegativeInt} {(isPerfectNumber ? "la so hoan hao" : "khong la so hoan hao")}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Loi! Vui long nhap so nguyen hop le.");
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
