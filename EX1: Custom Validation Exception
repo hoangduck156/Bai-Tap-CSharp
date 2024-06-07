@@ -1,0 +1,34 @@
+using System;
+
+class AgeOutOfRangeException : Exception
+{
+    public AgeOutOfRangeException(string message) : base(message)
+    {
+
+    }
+}
+class Excercise1
+{
+    static void Main(string[] args)
+    {
+        try
+        {
+            Console.Write("Nhap vao so tuoi cua hoc sinh: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+            if (age < 18 || age > 25)
+            {
+                throw new AgeOutOfRangeException("Tuoi cua sinh vien khong nam trong khoang cho phep");
+            }
+            Console.WriteLine("Sinh vien du dieu kien nhap hoc");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Loi! Vui long nhap so tuoi hop le");
+        }
+        catch(AgeOutOfRangeException ex)
+        {
+            Console.WriteLine($"Loi {ex.Message}");
+        }
+        Console.ReadLine();
+    }
+}
