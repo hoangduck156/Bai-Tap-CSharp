@@ -1,0 +1,38 @@
+using System;
+
+class Program
+{
+    struct student
+    {
+        public string Name;
+        public double Score;
+    }
+    static void Main(string[] args)
+    {
+        Console.Write("Nhap so luong sinh vien:");
+        int n = int .Parse(Console.ReadLine());
+        student[] students = new student[n];
+        for(int i = 0; i < n; i++)
+        {
+            Console.Write($"Nhap ten sinh vien {i + 1}:");
+            students[i].Name = Console.ReadLine();
+            Console.Write($"Nhap diem cua sinh vien {i + 1}: ");
+            students[i].Score = double.Parse(Console.ReadLine());
+        }
+
+        Console.WriteLine("\nThong tin tung sinh vien:");
+        foreach (var student in students)
+        {
+            Console.WriteLine($"Ten: {student.Name}, Diem: {student.Score}");
+        }
+
+        double totalScore = 0;
+        foreach (var student in students)
+        {
+            totalScore += student.Score;
+        }
+
+        double averageScore = totalScore / n;
+        Console.WriteLine($"\nDiem trung binh ca lop: {averageScore}");
+    }
+}
