@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        //a. Đảo ngược mảng
+
+        Console.Write("Nhap chuoi ki tu:");
+        string input1 = Console.ReadLine();
+
+        char[] charArray = input1.ToCharArray();
+        Array.Reverse(charArray);
+        string reserverString = new string(charArray);
+        Console.WriteLine($"Chuoi dao nguoc la:{reserverString}");
+
+        //b. Đếm số lượng từ trong mảng
+
+        Console.Write("Nhap chuoi ki tu:");
+        string input2 = Console.ReadLine();
+        string[] words = input2.Split(new char[] { ' ', '\t', '\n', '\r' },  StringSplitOptions.RemoveEmptyEntries);
+        Console.WriteLine($"So luong tu trong chuoi: {words.Length}");
+    }
+}
