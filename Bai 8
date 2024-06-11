@@ -1,0 +1,66 @@
+using System;
+using System.Text;
+using System.Collections.Generic;
+
+class BaiTap
+{
+    static void Main(string[] args)
+    {
+        //a. Hiển thị bảng mã ASCII
+
+        for(int i = 0; i < 128; i++)
+        {
+            Console.WriteLine($"Ki tu {(char) i}, ma ASCII: {i} ");
+        }
+
+        //b. Bảng mã UTF-8 trang 65001
+
+        Console.OutputEncoding = Encoding.UTF8;
+
+        for(int i = 0;i < 128; i++)
+        {
+            Console.WriteLine($"Ki tu {(char)i}, ma UTF-8: {i}");
+        }
+
+        //c. Phát tiếng beep khi nhấn phím space
+
+        Console.WriteLine("\nNhan phim Space de phat tieng beep:");
+        ConsoleKeyInfo keyInfo;
+        do
+        {
+            keyInfo = Console.ReadKey();
+
+            if(keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                Console.Beep();
+            }
+        } while (keyInfo.Key != ConsoleKey.Escape);
+
+        //d. Đếm số lần xuất hiện của mỗi kí tự trong chuỗi
+
+        Console.Write("\n NNhap chuoi ki tu: ");
+        string input = Console.ReadLine();
+
+        Dictionary<char, int> charCount = new Dictionary<char, int>();
+        foreach (char c in input)
+        {
+            if (char.IsLetterOrDigit(c))
+            {
+                if (charCount.ContainsKey(c))
+                {
+                    charCount[c]++;
+                }
+                else
+                {
+                    charCount[c] = 1;
+                }
+            }
+        }
+
+        Console.WriteLine("\nSo lan xuat hien cua moi ki tu:");
+        foreach (var kvp in charCount)
+        {
+            Console.WriteLine($"Ky tu '{kvp.Key}': {kvp.Value} lan");
+        }
+    }
+}
