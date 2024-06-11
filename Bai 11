@@ -1,0 +1,21 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Nhap ten file: ");
+        string fileName = Console.ReadLine();
+
+        Console.Write("Nhap noi dung: ");
+        string content = Console.ReadLine();
+
+        File.WriteAllText(fileName, content);
+
+        Console.WriteLine("Noi dung da duoc ghi vao file.");
+
+        string readContent = File.ReadAllText(fileName);
+        Console.WriteLine($"Noi dung tu file {fileName}:\n{readContent}");
+    }
+}
