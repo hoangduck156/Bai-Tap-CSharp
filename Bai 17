@@ -1,0 +1,26 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Nhap xau ki tu:");
+        string st = Console.ReadLine();
+
+        if (st == "#")
+        {
+            Console.Beep();
+        }
+        else
+        {
+            int wordCount = CountWords(st);
+            Console.WriteLine($"So tu trong xau ki tu '{st}' là: {wordCount}");
+        }
+    }
+
+    static int CountWords(string input)
+    {
+        string[] words = input.Trim().Split(new char[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries);
+        return words.Length;
+    }
+}
