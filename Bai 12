@@ -1,0 +1,33 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        ushort n = ReadUnsignedShort();
+        Console.WriteLine("Gia tri nhap duoc: " + n);
+        Console.WriteLine("Tong binh phuong tu 1 den " + n + " la: " + SumOfSquares(n));
+    }
+
+    static ushort ReadUnsignedShort()
+    {
+        ushort result;
+        Console.WriteLine("Nhap mot so nguyen khong dau:");
+        while (!ushort.TryParse(Console.ReadLine(), out result))
+        {
+            Console.WriteLine("Gia tri khon ghop le, Vui long nhap lai!");
+        }
+        return result;
+    }
+
+    static ulong SumOfSquares(ushort n)
+    {
+        ulong sum = 0;
+        for (ushort i = 1; i <= n; i++)
+        {
+            sum += (ulong)i * i;
+        }
+        return sum;
+    }
+}
