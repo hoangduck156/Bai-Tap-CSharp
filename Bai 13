@@ -1,0 +1,22 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        byte n = ReadByteInRange();
+        Console.WriteLine("Gia tri duoc nhap la: " + n);
+    }
+
+    static byte ReadByteInRange()
+    {
+        byte result;
+        Console.WriteLine("Nhap mot so nguyen khong dau (2-10) :");
+        while (!byte.TryParse(Console.ReadLine(), out result) || result < 2 || result > 10)
+        {
+            Console.WriteLine("Gia tri khong hop le, Vui long nhap lai!");
+        }
+        return result;
+    }
+}
