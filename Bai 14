@@ -1,0 +1,23 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        float x = ReadFloat();
+        Console.WriteLine("Gia tri duoc nhap la: " + x);
+    }
+
+    static float ReadFloat()
+    {
+        float result;
+        Console.WriteLine("Nhap mot gia tri thuc:");
+        while (!float.TryParse(Console.ReadLine(), out result))
+        {
+            Console.WriteLine("Gia tri khong hop le, Vui long nhap lai!");
+        }
+        return result;
+    }
+}
+
