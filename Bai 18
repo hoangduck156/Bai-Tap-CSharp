@@ -1,0 +1,20 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        double x = ReadDouble();
+        Console.WriteLine($"Can bac 2 cua {x} la: {Math.Sqrt(x)}");
+    }
+    static double ReadDouble()
+    {
+        double result;
+        do
+        {
+            Console.WriteLine("Nhap vao mot so thuc: ");
+        }
+        while(!double.TryParse(Console.ReadLine(), out result));
+        return result;
+    }
+}
