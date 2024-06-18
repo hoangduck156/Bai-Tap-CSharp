@@ -1,0 +1,87 @@
+using System;
+using System.Text;
+
+class Program
+{
+    static void Main()
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+
+        byte m = ReadByteInRange();
+        byte n = ReadByteInRange();
+        Console.WriteLine($"Gia tri duoc nhap cho m: {m}");
+        Console.WriteLine($"Gia tri duoc nhap cho n: {n}");
+
+        int[,] a = new int[m, n];
+
+        Read2DIntArray(a);
+
+        Console.WriteLine("Gia tri duoc nhap cho mang a:");
+        Print2DArray(a);
+
+        int sum = SumDivisibleBy(a, 2024);
+        Console.WriteLine($"Tong cac phan tu chia het cho 2024: {sum}");
+    }
+
+    static byte ReadByteInRange()
+    {
+        byte result;
+        do
+        {
+            Console.Write("Nhap so nguyen khong dau (2-10): ");
+        } while (!byte.TryParse(Console.ReadLine(), out result) || result < 2 || result > 10);
+
+        return result;
+    }
+
+    static int ReadInt()
+    {
+        int result;
+        do
+        {
+            Console.Write("Nhap gia tri so nguyen: ");
+        } while (!int.TryParse(Console.ReadLine(), out result));
+
+        return result;
+    }
+
+    static void Read2DIntArray(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                array[i, j] = ReadInt();
+            }
+        }
+    }
+
+    static void Print2DArray(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                Console.Write(array[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static int SumDivisibleBy(int[,] array, int divisor)
+    {
+        int sum = 0;
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                if (array[i, j] % divisor == 0)
+                {
+                    sum += array[i, j];
+                }
+            }
+        }
+
+        return sum;
+    }
+}
