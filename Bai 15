@@ -1,0 +1,45 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        byte n = ReadByteInRange();
+        Console.WriteLine("Gia tri nhap duoc la: " + n );
+        float[] a = new float [n];
+        ReadFloatArray(a);
+        Console.WriteLine("Gia tri nhap duoc cho mang a: " );
+        foreach (float value in a) {  
+            Console.WriteLine(value);
+        }
+        static byte ReadByteInRange()
+            {
+            byte result = 0;
+            Console.WriteLine("Nhap mot so nguyen khong dau (2-10): ");
+            while(!byte.TryParse(Console.ReadLine(), out result) || result < 2 || result > 10)
+            {
+                Console.WriteLine("Gia tri nhap khong hop le, Vui long nhap lai!");
+            }
+            return result;
+        }
+        static float ReadFloat()
+        {
+            float result = 0f;
+            Console.WriteLine("Nhap mot gia tri thuc:");
+            while (!float.TryParse(Console.ReadLine(), out result))
+            {
+                Console.WriteLine("Gia tri khong hop le, Vui long nhap lai!");
+            }
+            return result;
+        }
+        static void ReadFloatArray(float[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = ReadFloat();
+            }
+        }
+    }
+}
+
