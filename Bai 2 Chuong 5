@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+        dictionary["hello"] = "xin chao";
+        dictionary["bye"] = "tam biet";
+        dictionary["apple"] = "qua tao";
+        dictionary["pen"] = "cai but";
+  
+        while (true)
+        {
+            Console.Write("Nhap tu tieng Anh ( 'exit' đe thoat): ");
+            string input = Console.ReadLine().ToLower();
+
+            if (input == "exit")
+            {
+                Console.WriteLine("Ket thuc chuong trinh.");
+                break;
+            }
+
+            if (dictionary.ContainsKey(input))
+            {
+                string meaning = dictionary[input];
+                Console.WriteLine($"Nghia cua tu '{input}' trong tieng Viet: {meaning}");
+            }
+            else
+            {
+                Console.WriteLine($"Tu '{input}' khong co trong tu dien.");
+            }
+        }
+    }
+}
