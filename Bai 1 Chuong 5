@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+
+class Student
+{
+    public string Name { get; set; }
+    public string Class { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        List<Student> studentList = new List<Student>();
+
+        while (true)
+        {
+            Console.WriteLine("Chon tac vu:");
+            Console.WriteLine("1. Them sinh vien moi");
+            Console.WriteLine("2. Hiien thi danh sach sinh vien");
+            Console.WriteLine("3. Tinh tong cua tat ca sinh vien");
+            Console.WriteLine("0. Thoat");
+
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Console.Write("Nhap ten sinh vien: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Nhap lop: ");
+                    string className = Console.ReadLine();
+                    studentList.Add(new Student { Name = name, Class = className });
+                    break;
+                case 2:
+                    Console.WriteLine("Danh sach sinh vien:");
+                    foreach (var student in studentList)
+                    {
+                        Console.WriteLine($"Ten: {student.Name}, Lop: {student.Class}");
+                    }
+                    break;
+                case 3:
+
+                    double totalScore = 0;
+                    foreach (var student in studentList)
+                    {
+                        //totalScore += student.Score;
+                    }
+                    Console.WriteLine($"Tong diem cua tat ca sinh vien: {totalScore}");
+                    break;
+                case 0:
+                    Console.WriteLine("Ket thuc chuong trinh.");
+                    return;
+                default:
+                    Console.WriteLine("Lua chon khong hop le, Vui long chon lai!");
+                    break;
+            }
+        }
+    }
+}
