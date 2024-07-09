@@ -1,0 +1,5 @@
+Hiệu ứng khi bỏ từ khóa ref:
+Nếu bạn bỏ từ khóa ref trong hàm Swap, thì việc hoán đổi giá trị của a và b sẽ không được thực hiện trên biến gốc. Thay vào đó, nó sẽ hoán đổi giá trị của các bản sao tạm thời, và biến gốc không thay đổi.
+Tác dụng của từ khóa ref:
+Từ khóa ref cho phép bạn thay đổi giá trị của biến gốc trong hàm và giữ nguyên tham chiếu đến biến gốc.
+Thường sử dụng ref khi bạn muốn thay đổi giá trị của biến gốc trong hàm và muốn kết quả được phản ánh trở lại nơi gọi hàm.
