@@ -1,0 +1,7 @@
+A. Đúng: Generic cho phép định nghĩa các phương thức, lớp và giao diện mà không cần xác định kiểu dữ liệu cụ thể cho đến khi chúng được sử dụng. Điều này giúp tái sử dụng mã nguồn và tạo ra các thành phần linh hoạt.
+
+B. Sai: Generic không chỉ giới hạn trong việc sử dụng các kiểu dữ liệu do người dùng định nghĩa. Nó cũng có thể được sử dụng với các kiểu dữ liệu có sẵn như List<T>, Dictionary<TKey, TValue>, và nhiều loại khác.
+
+C. Sai: Generic có thể sử dụng với các kiểu dữ liệu nguyên thủy như int, float, double, v.v. Thậm chí, bạn có thể tạo ra các danh sách generic chứa các kiểu dữ liệu nguyên thủy.
+
+D. Sai: Generic có thể sử dụng với các interface.
