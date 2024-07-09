@@ -1,0 +1,131 @@
+using System;
+using System.Collections.Generic;
+// a. Tạo lớp trừu tượng Person
+public abstract class Person
+{
+    public string Name { get; set; }
+    public string Id { get; set; }
+}
+// b. Tạo interface KPI
+public interface IKpi
+{
+    float Kpi();
+}
+// c. Tạo lớp Student kế thừa Person
+public class Student : Person, IKpi
+{
+    private float gpa;
+    private string department;
+
+    public Student(string name, string id, string department)
+    {
+        Name = name;
+        Id = id;
+        Department = department;
+    }
+
+    public string Department
+    {
+        get => department;
+        set
+        {
+            if (value == "ICT" || value == "ECO")
+                department = value;
+            else
+                throw new ArgumentException("Gia tri phong ban khong hop le.");
+        }
+    }
+
+    public float Kpi()
+    {
+        return gpa;
+    }
+
+    public void SetGpa(float gpa)
+    {
+        this.gpa = gpa;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Person obs = null;// d. Khai báo obs
+
+        try
+        {
+            obs = new Student("Nguyễn Tiến Dũng", "12345678", "ICT"); // e. Cấp phát obs
+            ((Student)obs).SetGpa(3.5f);
+            Console.WriteLine($"KPI: {((IKpi)obs).Kpi()}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Loi: {ex.Message}");// g. Cấp phát obs bị sai
+        }
+        // h. Khai báo các biến danh sách
+        List<Person> list1 = new List<Person>();
+        List<Person> list2 = new List<Person>();
+
+        Console.WriteLine("Nhap danh sach sinh vien cho list1 (nhap '#' de ket thuc):");
+        while (true)
+        {
+            string name = Console.ReadLine();
+            if (name == "#") break;
+            list1.Add(new Student(name, "", ""));
+        }
+
+        Console.WriteLine("Nhap danh sach sinh vien cho list2 (nhap '#' de ket thuc):");
+        while (true)
+        {
+            string name = Console.ReadLine();
+            if (name == "#") break;
+            list2.Add(new Student(name, "", ""));
+        }
+
+        Console.WriteLine("List1:");
+        foreach (var student in list1)
+        {
+            Console.WriteLine(student.Name);
+        }
+
+        Console.WriteLine("List2:");
+        foreach (var student in list2)
+        {
+            Console.WriteLine(student.Name);
+        }
+        // k. Khai báo 1 list_list
+        List<List<Person>> list_list = new List<List<Person>>();
+        list_list.Add(list1);
+        list_list.Add(list2);
+
+        Console.WriteLine("List of Lists:");
+        foreach (var sublist in list_list)
+        {
+            foreach (var student in sublist)
+            {
+                Console.WriteLine(student.Name);
+            }
+        }
+        // i. Tạo diction dic11
+        Dictionary<string, Student> dic11 = new Dictionary<string, Student>();
+        foreach (var student in list1)
+        {
+            if (student is Student s)
+            {
+                dic11[s.Id] = s;
+            }
+        }
+
+        if (dic11.TryGetValue("Nam", out Student foundStudent))
+        {
+            Console.WriteLine($"Tim thay sinh vien: {foundStudent.Name}");
+        }
+        else
+        {
+            Console.WriteLine("Khong tim thay sinh vien co ten 'Nam'.");
+        }
+    }
+}
+
+
