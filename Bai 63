@@ -1,0 +1,84 @@
+Cách 1: Sử dụng System.Text.Json
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, string> myDictionary = new Dictionary<string, string>
+        {
+            { "key1", "value1" },
+            { "key2", "value2" },
+            // Thêm các cặp key-value khác vào từ điển
+        };
+
+        string filePath = "path/to/your/output/file.json"; // Đường dẫn đến tệp JSON
+
+        // Gọi hàm để ghi từ điển vào tệp JSON
+        WriteJsonFile(myDictionary, filePath);
+    }
+
+    static void WriteJsonFile(Dictionary<string, string> dictionary, string filePath)
+    {
+        try
+        {
+            // Serialization từ từ điển thành chuỗi JSON
+            string jsonContent = JsonSerializer.Serialize(dictionary);
+
+            // Ghi chuỗi JSON vào tệp
+            File.WriteAllText(filePath, jsonContent);
+
+            Console.WriteLine($"Đã ghi từ điển vào tệp {filePath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Lỗi khi ghi tệp JSON: {ex.Message}");
+        }
+    }
+}
+
+Cách 2: Sử dụng Newtonsoft
+
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, string> myDictionary = new Dictionary<string, string>
+        {
+            { "key1", "value1" },
+            { "key2", "value2" },
+            // Thêm các cặp key-value khác vào từ điển
+        };
+
+        string filePath = "path/to/your/output/file.json"; // Đường dẫn đến tệp JSON
+
+        // Gọi hàm để ghi từ điển vào tệp JSON
+        WriteJsonFile(myDictionary, filePath);
+    }
+
+    static void WriteJsonFile(Dictionary<string, string> dictionary, string filePath)
+    {
+        try
+        {
+            // Serialization từ từ điển thành chuỗi JSON
+            string jsonContent = JsonConvert.SerializeObject(dictionary);
+
+            // Ghi chuỗi JSON vào tệp
+            System.IO.File.WriteAllText(filePath, jsonContent);
+
+            Console.WriteLine($"Đã ghi từ điển vào tệp {filePath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Lỗi khi ghi tệp JSON: {ex.Message}");
+        }
+    }
+}
