@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+
+class Student
+{
+    public string ID { get; set; }
+    public double GPA { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        List<Student> studentList = new List<Student>();
+        Dictionary<string, double> dict1 = new Dictionary<string, double>();
+
+        Console.WriteLine("Nhap danh sach sinh vien (nhap '#' đe ket thuc):");
+        while (true)
+        {
+            Console.Write("Nhap ID: ");
+            string id = Console.ReadLine();
+            if (id == "#") break;
+
+            Console.Write("Nhap diem trung binh: ");
+            if (double.TryParse(Console.ReadLine(), out double gpa))
+            {
+                studentList.Add(new Student { ID = id, GPA = gpa });
+            }
+            else
+            {
+                Console.WriteLine("Điem trung binh khong hop le. Bo qua.");
+            }
+        }
+
+        foreach (var student in studentList)
+        {
+            dict1[student.ID] = student.GPA;
+        }
+
+        if (dict1.TryGetValue("123456", out double gpa123456))
+        {
+            Console.WriteLine($"Điem trung binh sinh vien co ID '123456': {gpa123456}");
+        }
+        else
+        {
+            Console.WriteLine("Khong tim thay sinh vien co ID '123456'.");
+        }
+    }
+}
