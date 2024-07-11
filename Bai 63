@@ -16,7 +16,7 @@ class Program
             // Thêm các cặp key-value khác vào từ điển
         };
 
-        string filePath = "path/to/your/output/file.json"; // Đường dẫn đến tệp JSON
+        string filePath = "file.json"; // Đường dẫn đến tệp JSON
 
         // Gọi hàm để ghi từ điển vào tệp JSON
         WriteJsonFile(myDictionary, filePath);
@@ -58,7 +58,7 @@ class Program
             // Thêm các cặp key-value khác vào từ điển
         };
 
-        string filePath = "path/to/your/output/file.json"; // Đường dẫn đến tệp JSON
+        string filePath = "file.json"; // Đường dẫn đến tệp JSON
 
         // Gọi hàm để ghi từ điển vào tệp JSON
         WriteJsonFile(myDictionary, filePath);
