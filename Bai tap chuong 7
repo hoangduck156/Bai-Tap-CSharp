@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Tạo một từ điển <string, int>
+        Dictionary<string, int> myDictionary = new Dictionary<string, int>();
+
+        // Thêm các cặp khóa - giá trị vào từ điển
+        myDictionary.Add("apple", 10);
+        myDictionary.Add("banana", 5);
+        myDictionary.Add("cherry", 8);
+
+        // Kiểm tra xem khóa "banana" có tồn tại trong từ điển hay không
+        if (myDictionary.ContainsKey("banana"))
+        {
+            Console.WriteLine($"Gia tri cua khoa 'banana': {myDictionary["banana"]}");
+        }
+        else
+        {
+            Console.WriteLine("Khoa 'banana' khong ton tai trong tu dien.");
+        }
+
+        // Truy xuất giá trị liên quan với khóa "cherry" một cách an toàn
+        if (myDictionary.TryGetValue("cherry", out int cherryValue))
+        {
+            Console.WriteLine($"Gia tri cua khoa 'cherry': {cherryValue}");
+        }
+        else
+        {
+            Console.WriteLine("Khoa 'cherry' khong ton tai trong tu dien.");
+        }
+
+        // Lặp qua các cặp khóa - giá trị trong từ điển
+        Console.WriteLine("Danh sach cac cap khoa - gia tri trong tu dien:");
+        foreach (var kvp in myDictionary)
+        {
+            Console.WriteLine($"Khoa: {kvp.Key}, Gia tri: {kvp.Value}");
+        }
+    }
+}
