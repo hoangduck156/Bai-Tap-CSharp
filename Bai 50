@@ -1,0 +1,13 @@
++) Có thể thay  
+min_value = FindMin<int>(intArray); 
+thành 
+min_value = FindMin(intArray); 
+
+min_value = FindMin<double>(doubleArray);
+thành
+min_value = FindMin(doubleArray);
+...
+
++) Biến dynamic là một kiểu dữ liệu đặc biệt trong C# cho phép bạn trì hoãn việc xác định kiểu dữ liệu cho đến thời điểm thực thi (runtime).
+Khi bạn sử dụng biến dynamic, kiểm tra kiểu dữ liệu được thực hiện tại thời điểm chạy, không phải tại thời điểm biên dịch.
+Biến dynamic thường được sử dụng khi làm việc với dữ liệu động (ví dụ: JSON, API response, dữ liệu từ các nguồn bên ngoài).
