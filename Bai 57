@@ -1,0 +1,40 @@
+using System;
+using System.Text.Json;
+
+class Program
+{
+    static void Main()
+    {
+        double radius;
+        do
+        {
+            Console.Write("Nhap ban kinh hinh tron (r > 0): ");
+        } while (!double.TryParse(Console.ReadLine(), out radius) || radius <= 0);
+
+        // Gọi hàm để tính diện tích, chu vi và đường kính
+        string result = CalculateCircleProperties(radius);
+
+        // Hiển thị kết quả
+        Console.WriteLine("Ket qua:");
+        Console.WriteLine(result);
+    }
+
+    static string CalculateCircleProperties(double r)
+    {
+        double pi = Math.PI;
+        double area = pi * r * r;
+        double circumference = 2 * pi * r;
+        double diameter = 2 * r;
+
+        // Tạo đối tượng JSON
+        var json = new
+        {
+            dien_tich = area,
+            chu_vi = circumference,
+            duong_kinh = diameter
+        };
+
+        // Chuyển đối tượng JSON thành chuỗi
+        return JsonSerializer.Serialize(json);
+    }
+}
