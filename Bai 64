@@ -1,0 +1,52 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        float[,] myArray = {
+            { 1.1f, 2.2f, 3.3f },
+            { 4.4f, 5.5f, 6.6f },
+            // Thêm các hàng khác vào mảng
+        };
+
+        string filePath = "file.csv"; // Đường dẫn đến tệp CSV
+
+        // Gọi hàm để ghi mảng vào tệp CSV
+        WriteCsvFile(myArray, filePath);
+    }
+
+    static void WriteCsvFile(float[,] array, string filePath)
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                int rows = array.GetLength(0);
+                int cols = array.GetLength(1);
+
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        writer.Write(array[i, j]);
+
+                        // Không thêm dấu phẩy sau phần tử cuối cùng trong hàng
+                        if (j < cols - 1)
+                            writer.Write(",");
+                    }
+
+                    // Xuống dòng sau mỗi hàng
+                    writer.WriteLine();
+                }
+            }
+
+            Console.WriteLine($"Đa ghi mang vao tep {filePath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Loi khi ghi tep CSV: {ex.Message}");
+        }
+    }
+}
