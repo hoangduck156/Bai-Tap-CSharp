@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+class Program
+{
+    static void Main()
+    {
+        string filePath = "path/to/your/json/file.json"; // Đường dẫn đến tệp JSON
+
+        // Đọc nội dung từ tệp JSON và chuyển thành từ điển
+        Dictionary<string, string> dictionary = ReadJsonFile(filePath);
+
+        // Hiển thị nội dung từ điển
+        foreach (var kvp in dictionary)
+        {
+            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+        }
+    }
+
+    static Dictionary<string, string> ReadJsonFile(string filePath)
+    {
+        try
+        {
+            string jsonContent = File.ReadAllText(filePath);
+
+            // Deserialization từ chuỗi JSON thành từ điển
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(jsonContent);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Loi khi doc tep JSON: {ex.Message}");
+            return null;
+        }
+    }
+}
