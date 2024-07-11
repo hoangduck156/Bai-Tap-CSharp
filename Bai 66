@@ -1,0 +1,58 @@
+using System;
+using System.IO;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        string filePath = "file.csv"; // Đường dẫn đến tệp CSV
+
+        // Gọi hàm để đọc tệp CSV và chuyển thành mảng hai chiều
+        double[,] resultArray = ReadCsvFile(filePath);
+
+        // Hiển thị mảng
+        int rows = resultArray.GetLength(0);
+        int cols = resultArray.GetLength(1);
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                Console.Write(resultArray[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static double[,] ReadCsvFile(string filePath)
+    {
+        try
+        {
+            string[] lines = File.ReadAllLines(filePath);
+
+            // Xác định số hàng và số cột
+            int rows = lines.Length;
+            int cols = lines[0].Split(',').Length;
+
+            double[,] resultArray = new double[rows, cols];
+
+            for (int i = 0; i < rows; i++)
+            {
+                string[] values = lines[i].Split(',');
+
+                for (int j = 0; j < cols; j++)
+                {
+                    // Chuyển chuỗi thành số thực
+                    double.TryParse(values[j], out resultArray[i, j]);
+                }
+            }
+
+            return resultArray;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Loi khi doc tep CSV: {ex.Message}");
+            return null;
+        }
+    }
+}
