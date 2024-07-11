@@ -7,7 +7,7 @@ class Program
 {
     static void Main()
     {
-        string filePath = "path/to/your/json/file.json"; // Đường dẫn đến tệp JSON
+        string filePath = "file.json"; // Đường dẫn đến tệp JSON
 
         // Đọc nội dung từ tệp JSON và chuyển thành từ điển
         Dictionary<string, string> dictionary = ReadJsonFile(filePath);
