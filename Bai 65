@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, double> myDictionary = new Dictionary<string, double>
+        {
+            { "key1", 123.456 },
+            { "key2", 789.012 },
+            // Thêm các cặp key-value khác vào từ điển
+        };
+
+        string filePath = "file.csv"; // Đường dẫn đến tệp CSV
+
+        // Gọi hàm để ghi từ điển vào tệp CSV
+        WriteCsvFile(myDictionary, filePath);
+    }
+
+    static void WriteCsvFile(Dictionary<string, double> dictionary, string filePath)
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Ghi tiêu đề (header)
+                writer.WriteLine("Key,Value");
+
+                foreach (var kvp in dictionary)
+                {
+                    // Ghi từng cặp key-value vào tệp
+                    writer.WriteLine($"{kvp.Key},{kvp.Value}");
+                }
+            }
+
+            Console.WriteLine($"Đa ghi tu dien vao tep {filePath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Loi khi ghi tep CSV: {ex.Message}");
+        }
+    }
+}
