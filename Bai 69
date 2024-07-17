@@ -1,0 +1,147 @@
+using System;
+using System.IO;
+using System.Text;
+
+public class FileOperations
+{
+    // Đếm số dòng trong file
+    public static int CountLines(string filePath)
+    {
+        int lineCount = 0;
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                lineCount++;
+            }
+        }
+        return lineCount;
+    }
+
+    // Đếm số lần xuất hiện của 1 ký tự trong file
+    public static int CountCharacterOccurrences(string filePath, char character)
+    {
+        int count = 0;
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                count += line.Count(c => c == character);
+            }
+        }
+        return count;
+    }
+
+    // Đếm số từ trong file
+    public static int CountWords(string filePath)
+    {
+        int wordCount = 0;
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                wordCount += line.Split(' ').Length;
+            }
+        }
+        return wordCount;
+    }
+
+    // Đọc file UTF-8 và ghi sang file UTF-8 khác
+    public static void ReadAndWriteUtf8Files(string readFilePath, string writeFilePath)
+    {
+        using (StreamReader reader = new StreamReader(readFilePath, Encoding.UTF8))
+        {
+            using (StreamWriter writer = new StreamWriter(writeFilePath, false, Encoding.UTF8))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    writer.WriteLine(line);
+                }
+            }
+        }
+    }
+
+    // Đọc file UTF-16 và ghi sang file UTF-16 khác
+    public static void ReadAndWriteUtf16Files(string readFilePath, string writeFilePath)
+    {
+        using (StreamReader reader = new StreamReader(readFilePath, Encoding.Unicode))
+        {
+            using (StreamWriter writer = new StreamWriter(writeFilePath, false, Encoding.Unicode))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    writer.WriteLine(line);
+                }
+            }
+        }
+    }
+
+    // Ghi mảng 2 chiều số thực 8 byte lên file nhị phân
+    public static void Write2DArrayToBinaryFile(double[,] array, string filePath)
+    {
+        using (BinaryWriter writer = new BinaryWriter(File.Open(filePath, FileMode.Create)))
+        {
+            int rows = array.GetLength(0);
+            int cols = array.GetLength(1);
+            writer.Write(rows);
+            writer.Write(cols);
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    writer.Write(array[i, j]);
+                }
+            }
+        }
+    }
+
+    //  Đọc mảng 2 chiều số thực 8 byte từ file nhị phân
+    public static double[,] Read2DArrayFromBinaryFile(string filePath)
+    {
+        using (BinaryReader reader = new BinaryReader(File.Open(filePath, FileMode.Open)))
+        {
+            int rows = reader.ReadInt32();
+            int cols = reader.ReadInt32();
+            double[,] array = new double[rows, cols];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    array[i, j] = reader.ReadDouble();
+                }
+            }
+            return array;
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Ví dụ sử dụng
+        string filePath = "example.txt";
+        Console.WriteLine("So dong: " + FileOperations.CountLines(filePath));
+        Console.WriteLine("So lan xuat hien cua ky tu 'a': " + FileOperations.CountCharacterOccurrences(filePath, 'a'));
+        Console.WriteLine("So tu: " + FileOperations.CountWords(filePath));
+
+        string readUtf8FilePath = "vd1_read.txt";
+        string writeUtf8FilePath = "vd1_ghi.txt";
+        FileOperations.ReadAndWriteUtf8Files(readUtf8FilePath, writeUtf8FilePath);
+
+        string readUtf16FilePath = "vd1_read.txt";
+        string writeUtf16FilePath = "vd1_ghi.txt";
+        FileOperations.ReadAndWriteUtf16Files(readUtf16FilePath, writeUtf16FilePath);
+
+        double[,] array = new double[,] { { 1.0, 2.0 }, { 3.0, 4.0 } };
+        string binaryFilePath = "a2d.dat";
+        FileOperations.Write2DArrayToBinaryFile(array, binaryFilePath);
+
+        double[,] readArray = FileOperations.Read2DArrayFromBinaryFile(binaryFilePath);
+    }
+}
