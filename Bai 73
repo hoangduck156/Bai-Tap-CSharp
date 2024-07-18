@@ -1,0 +1,50 @@
+a)
+
+using System;
+using System.Data.SqlClient;
+
+namespace Database_Operation
+{
+    class SelectStatement
+    {
+        static void Main()
+        {
+            Read();
+            Console.ReadKey();
+        }
+
+        static void Read()
+        {
+            string constr = @"Data Source=DESKTOP-GP8F496;Initial Catalog=Demodb;User ID=sa;Password=24518300";
+
+            using (SqlConnection conn = new SqlConnection(constr))
+            {
+                conn.Open();
+
+                SqlCommand cmd;
+                SqlDataReader dreader;
+                string sql, output = "";
+                sql = "SELECT articleID, articleName FROM demo";
+                cmd = new SqlCommand(sql, conn);
+                dreader = cmd.ExecuteReader();
+
+                // Đọc từng dòng của bảng
+                while (dreader.Read())
+                {
+                    output = output + dreader.GetValue(0) + " - " +
+                                     dreader.GetValue(1) + "\n";
+                }
+
+                Console.Write(output);
+
+                // Đóng tất cả các đối tượng
+                dreader.Close();
+                cmd.Dispose();
+                conn.Close();
+            }
+        }
+    }
+}
+
+b)
+
