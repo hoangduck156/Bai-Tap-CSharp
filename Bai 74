@@ -14,18 +14,20 @@ namespace Database_Operation
         static void Insert()
         {
             string constr;
+            SqlConnection conn;
             constr = @"Data Source=DESKTOP-GP8F496;Initial Catalog=Demodb;User ID=sa;Password=24518300";
-
-            using (SqlConnection conn = new SqlConnection(constr))
-            {
-                conn.Open();
-
-                string sql = "insert into demo values(3, 'Python')";
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            conn = new SqlConnection(constr);
+            conn.Open();
+            SqlCommand cmd;
+            // Không cần sử dụng SqlDataAdapter để thực hiện lệnh INSERT
+            string sql = "";
+            sql = "insert into demo values(3, 'Python')";
+            cmd = new SqlCommand(sql, conn);
+            // Thực hiện lệnh chèn trực tiếp
+            cmd.ExecuteNonQuery();
+            // Đóng các đối tượng
+            cmd.Dispose();
+            conn.Close();
         }
     }
 }
