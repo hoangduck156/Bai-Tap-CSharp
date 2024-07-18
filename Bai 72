@@ -1,0 +1,50 @@
+a) 
+
+-- Tạo cơ sở dữ liệu Demodb (nếu chưa tồn tại)
+CREATE DATABASE Demodb;
+USE Demodb;
+
+-- Tạo bảng demo
+CREATE TABLE demo (
+    articleID varchar(30) NOT NULL PRIMARY KEY,
+    articleName varchar(30) NOT NULL
+);
+
+-- Thêm dữ liệu mẫu
+INSERT INTO demo (articleID, articleName) VALUES ('1', 'C#');
+INSERT INTO demo (articleID, articleName) VALUES ('2', 'C++');
+
+b) 
+
+using System;
+using System.Data.SqlClient;
+
+namespace Database_Operation
+{
+    class DBConn
+    {
+        static void Main()
+        {
+            Connect();
+            Console.ReadKey();
+        }
+
+        static void Connect()
+        {
+            string constr = @"Data Source=DESKTOP-GP8F496;Initial Catalog=Demodb;User ID=sa;Password=24518300";
+
+            using (SqlConnection conn = new SqlConnection(constr))
+            {
+                try
+                {
+                    conn.Open();
+                    Console.WriteLine("Kết nối thành công!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi kết nối: " + ex.Message);
+                }
+            }
+        }
+    }
+}
