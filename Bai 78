@@ -1,0 +1,59 @@
+a) Viết chương trình c# console chạy 1 thread:
+using System;
+using System.Threading;
+
+namespace ThreadExample
+{
+    class Program
+    {
+        static void Main()
+        {
+            var thread = new Thread(() =>
+            {
+                Console.WriteLine("Thread bắt đầu.");
+                Thread.Sleep(1000); // Dừng luồng trong 1 giây
+                Console.WriteLine("Thread kết thúc.");
+            });
+
+            thread.Start(); // Khởi động luồng
+            thread.Join(); // Đợi luồng hoàn thành
+
+            Console.WriteLine("Chương trình chính kết thúc.");
+        }
+    }
+}
+
+b)  Viết chương trình C# tạo hàm static gọi trong chế độ không đồng bộ:
+using System;
+using System.Threading.Tasks;
+
+namespace AsyncExample
+{
+    class Program
+    {
+        static async Task Main()
+        {
+            await async1();
+            Console.WriteLine("Chương trình chính kết thúc.");
+        }
+
+        static async Task async1()
+        {
+            Console.WriteLine("Async bắt đầu.");
+            await Task.Delay(1000); // Đợi 1 giây không chặn luồng chính
+            Console.WriteLine("Async kết thúc.");
+        }
+    }
+}
+
+c)So sánh hàm thread và hàm gọi trong chế độ không đồng bộ async/await trong C#:
+
+Thread:
+Sử dụng để thực hiện các tác vụ song song.
+Quản lý luồng phức tạp hơn.
+Cần kiểm soát đồng thời truy cập vào dữ liệu chung.
+
+Async/await:
+Sử dụng để thực hiện các tác vụ không đồng bộ mà không chặn luồng chính.
+Giảm việc tạo ra nhiều luồng.
+Giữ mã nguồn dễ đọc và dễ hiểu hơ
