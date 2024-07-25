@@ -1,0 +1,35 @@
+using System;
+using System.Threading;
+
+namespace InfiniteLoopExample
+{
+    class Program
+    {
+        static void Main()
+        {
+            // Tạo một luồng mới và gọi hàm ff trong luồng đó
+            var workerThread = new Thread(ff);
+            workerThread.Start();
+
+            // Đợi cho tới khi luồng hoàn thành
+            workerThread.Join();
+
+            Console.WriteLine("Chuong trinh ket thuc.");
+        }
+
+        static void ff()
+        {
+            Random random = new Random();
+            while (true)
+            {
+                int n = random.Next(); // Tạo số nguyên ngẫu nhiên
+                Console.WriteLine("So ngau nhien: " + n);
+
+                if (n % 2025 == 0)
+                    break; // Nếu n chia hết cho 2025 thì dừng vòng lặp
+
+                Thread.Sleep(100); // Dừng luồng trong 100ms
+            }
+        }
+    }
+}
