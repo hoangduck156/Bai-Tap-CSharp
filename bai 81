@@ -1,0 +1,11 @@
+Thread.Sleep(100);:
+Là một phương thức của gói System.Threading.
+Dừng luồng hiện tại (thread) trong một khoảng thời gian cố định (ở đây là 100ms).
+Trong thời gian chờ, luồng sẽ không thực hiện bất kỳ công việc nào khác.
+Thường được sử dụng trong các ví dụ đơn giản hoặc khi bạn muốn tạm dừng luồng một cách đồng bộ.
+
+Task.Delay(100);:
+Là một phương thức của gói System.Threading.Tasks.
+Không dừng luồng hiện tại (thread). Thay vào đó, nó trả về một Task đại diện cho việc chờ.
+Trong thời gian chờ, luồng có thể tiếp tục thực hiện các công việc khác.
+Thường được sử dụng trong các tác vụ không đồng bộ (async/await) để không chặn luồng chính.
